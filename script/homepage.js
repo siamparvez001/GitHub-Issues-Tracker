@@ -130,21 +130,5 @@ async function openCardModal(cardId){
 
 };
 
-// document.getElementById("btn-search").addEventListener("click", ()=>{
-//     const searchvalue = searchInput.value.trim().toLowerCase();
-//     console.log(searchvalue);
-//     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchvalue}`)
-//     .then(res => res.json())
-//     .then((data) => {
-//         const allCard = data.data
-//         console.log(allCard);
-//         const filterCard = allCard.filter(maincard => maincard.mainCard.toLowerCase().includes(searchvalue))
-//         console.log(filterCard);
-//     });
-//     // console.log(filterCard);
-// });
 
-
-
-// totalCalculate()
 loadCard();
