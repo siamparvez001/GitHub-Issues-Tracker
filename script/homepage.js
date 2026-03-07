@@ -23,22 +23,22 @@ const loadingSpinner = document.getElementById("loading-spinner");
 // console.log(totalCard);
 
 
-// async function searchIssues(searchText){
-//     const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
-//     const data = await res.json();
-//     displayCard(data.data);
+async function searchIssues(searchText){
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
+    const data = await res.json();
+    displayCard(data.data);
 
-// };
+};
 
-// searchInput.addEventListener("input", function(){
-//     const searchText = searchInput.value;
-//     if(searchText === ""){
-//         displayCard(allCards); 
-//         return;
-//     }
-//     searchIssues(searchText);
+searchInput.addEventListener("input", function(){
+    const searchText = searchInput.value;
+    if(searchText === ""){
+        displayCard(allCards); 
+        return;
+    }
+    searchIssues(searchText);
 
-// });
+});
 
 
 
