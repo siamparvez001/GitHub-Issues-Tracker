@@ -4,43 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Tailwind css and DaisyUi -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>GitHub Issues Tracker | Homepage</title>
 </head>
 
-<body class="mt-[30px]">
+<body class="mt-[30px] bg-gray-100">
 
     <!-- navbar section -->
-    <div class="w-11/12 mx-auto flex">
+    <div class="w-11/12 mx-auto flex items-center justify-between bg-white">
         <div class="logo-section flex gap-[20px] items-center">
             <img class="w-[40px]" src="./images/github-logo.png" alt="">
             <p class="font-bold text-[20px]">GitHub Issues Tracker</p>
         </div>
 
         <!-- scerch section -->
-        <div>
-
+        <div class="flex gap-[20px]">
+            <div>
+                <label class="input">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                            stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input type="search" required placeholder="Search issues..." />
+                </label>
+            </div>
+            <button class="btn btn-primary px-[15px] py-[8px] rounded-[20px]">+ New Issue</button>
         </div>
     </div>
 
     <!-- btn section -->
-    <div>
-
+    <div class="flex gap-[25px] w-11/12 mx-auto mt-[50px] shadow-xl py-[20px] px-[10px] bg-white">
+        <div>
+            <button id="all-filter-btn" onclick="allBtnClick()" class="btn btn-primary w-[100px]">All</button>
+        </div>
+        <div>
+            <button id="open-filter-btn" onclick="openBtnClick()" class="btn  w-[100px]">Open</button>
+        </div>
+        <div>
+            <button id="closed-filter-btn" onclick="closedBtnClick()" class="btn  w-[100px]">Closed</button>
+        </div>
     </div>
 
     <!-- issue section -->
-    <div>
-
+    <div class="w-11/12 mx-auto flex justify-between items-center mt-[20px] bg-white px-[20px] py-[15px]">
+        <div class="flex items-center gap-[20px] ">
+            <div>
+                <img src="./images/Aperture.png" alt="">
+            </div>
+            <div>
+                <p class="font-bold text-2xl"><span id="total-card">50 </span>Issues›</p>
+                <p class="opacity-60">Track and manage your project issues</p>
+            </div>
+            <div class="flex items-center gap-[10px] ">
+                <p><i class="fa-solid text-green-500 fa-circle"></i>Open</p>
+                <p><i class="fa-solid text-purple-500 fa-circle"></i>Closed</p>
+            </div>
+        </div>
     </div>
 
 
-    <div class="container mx-auto">
+    <div class="container mx-auto shadow-xl mt-[20px] pt-[30px] bg-white">
 
         <!-- card container -->
         <div id="card-container"
-            class="mt-[20px] space-x-2 w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+            class="mt-[20px] space-x-3 w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px]">
             <!-- dainamicaly added here -->
             <!-- <div class="w-[300px] rounded-[20px] shadow-md space-y-3 p-[15px] border-t-[5px] border-t-green-500">
                 <div class="flex justify-between">
@@ -85,7 +123,8 @@
                         <p id="modal-second-labels" class=" text-orange-500 ">help wanted</p>
                     </div>
                 </div>
-                <p id="modal-description" class="opacity-60 pb-[20px] ">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
+                <p id="modal-description" class="opacity-60 pb-[20px] ">The navigation menu doesn't collapse properly on
+                    mobile devices. Need to fix the responsive behavior.</p>
                 <div class="flex shadow-sm m-t[10px] py-[15px] px-[15px] justify-start gap-[100px]">
                     <div>
                         <p class="opacity-60">Assignee:</p>
@@ -93,7 +132,8 @@
                     </div>
                     <div>
                         <p class="opacity-60">Priority:</p>
-                        <button  id="priority-name" class="bg-red-600 px-[10px] border-none py-[6px] rounded-[20px] text-white ">High</button>
+                        <button id="priority-name"
+                            class="bg-red-600 px-[10px] border-none py-[6px] rounded-[20px] text-white ">High</button>
                     </div>
                 </div>
                 <div class="modal-action">

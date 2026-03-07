@@ -11,21 +11,50 @@ const modalSecondLabels = document.getElementById("modal-second-labels");
 const modalDescription = document.getElementById("modal-description");
 const assigneeName = document.getElementById("assignee-name");
 const priorityName = document.getElementById("priority-name");
+let totalCard = document.getElementById("total-card");
+const allFilterBtn = document.getElementById("all-filter-btn");
+const openFilterBtn = document.getElementById("open-filter-btn");
+const closedFilterBtn = document.getElementById("closed-filter-btn");
+let allCards = [];
+let openCard = [];
+let closedCard = [];
+// console.log(totalCard);
 
+function totalCalculate(){
+   totalCard.innerText = cardContainer.children.length;
+
+    // console.log(totalNumber);
+};
+
+function allBtnClick(){
+    displayCard(allCards);
+};
+
+function openBtnClick(){
+    const openCard = allCards.filter(card => card.status == 'open');
+    displayCard(openCard);
+};
+
+function closedBtnClick(){
+    const closedCards = allCards.filter(card => card.status === "closed");
+    displayCard(closedCards);
+}
 
 async function loadCard() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const date = await res.json();
+    allCards = date.data
     // console.log(data);
     displayCard(date.data);
-}
+};
 
 function displayCard(cards) {
+    cardContainer.innerHTML = "";
     // console.log(cards);
     cards.forEach(card => {
         // console.log(card);
         const mainCard = document.createElement("div")
-        mainCard.className = (`w-[350px] rounded-[20px] shadow-md space-y-3 p-[15px] border-t-[5px]  ${card.status == 'open' ? 'border-t-green-500' : 'border-t-red-500'} `)
+        mainCard.className = (`w-[350px] space-x-5 rounded-[20px] mx-auto shadow-md space-y-4 p-[20px] border-t-[5px]  ${card.status == 'open' ? 'border-t-green-500' : 'border-t-red-500'} `)
         mainCard.innerHTML = `
             <div class="flex justify-between">
                 <img class="w-[35px]" src="${card.status == 'open' ? './images/Open-Status.png' : './images/Closed-Status.png'}" alt="">
@@ -36,7 +65,7 @@ function displayCard(cards) {
                     ? 'bg-orange-100'
                     : 'bg-gray-100'} py-[6px] px-[15px] rounded-[20px]">${card.priority}</p>
             </div>
-            <h3 onclick="openCardModal(${card.id})">${card.title}</h3>
+            <h3 class="cursor-pointer" onclick="openCardModal(${card.id})">${card.title}</h3>
             <p class="line-clamp-2">${card.description}</p>
             <div class="flex items-center space-x-2">
                 <p class=" px-[10px] py-[6px] rounded-[20px] ${card.labels[0] == 'bug' ? 'bg-red-100' : 'bg-green-100'}">${card.labels[0]}</p>
@@ -51,7 +80,8 @@ function displayCard(cards) {
         `
         cardContainer.appendChild(mainCard);
     });
-}
+    totalCalculate();
+};
 
 async function openCardModal(cardId){
     console.log(cardId);
@@ -73,8 +103,8 @@ async function openCardModal(cardId){
     priorityName.textContent = cardDetails.priority;
     modalDescription.textContent = cardDetails.description;
 
-}
+};
 
 
-
+// totalCalculate()
 loadCard();
