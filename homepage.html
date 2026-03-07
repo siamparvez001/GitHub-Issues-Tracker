@@ -36,7 +36,8 @@
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" required placeholder="Search issues..." />
+                    <input id="search-input" type="search" required placeholder="Search issues..." />
+                    <button id="btn-search" class="btn btn-primary">Search</button>
                 </label>
             </div>
             <button class="btn btn-primary px-[15px] py-[8px] rounded-[20px]">+ New Issue</button>
@@ -98,6 +99,11 @@
                 <p class="opacity-60">#1 by john_doe</p>
                 <p class="opacity-60">1/15/2024</p>
             </div> -->
+
+            <!-- loading spinner -->
+            <div id="loading-spinner" class="h-[60vh] hidden justify-center items-center">
+                <span class="loading loading-dots loading-xl"></span>
+            </div>
 
         </div>
 

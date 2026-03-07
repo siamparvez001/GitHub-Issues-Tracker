@@ -18,7 +18,30 @@ const closedFilterBtn = document.getElementById("closed-filter-btn");
 let allCards = [];
 let openCard = [];
 let closedCard = [];
+const searchInput = document.getElementById("search-input");
+const loadingSpinner = document.getElementById("loading-spinner");
 // console.log(totalCard);
+
+
+// async function searchIssues(searchText){
+//     const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
+//     const data = await res.json();
+//     displayCard(data.data);
+
+// };
+
+// searchInput.addEventListener("input", function(){
+//     const searchText = searchInput.value;
+//     if(searchText === ""){
+//         displayCard(allCards); 
+//         return;
+//     }
+//     searchIssues(searchText);
+
+// });
+
+
+
 
 function totalCalculate(){
    totalCard.innerText = cardContainer.children.length;
@@ -41,6 +64,8 @@ function closedBtnClick(){
 }
 
 async function loadCard() {
+    loadingSpinner.classList.remove("hidden");
+    loadingSpinner.classList.add("flex");
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const date = await res.json();
     allCards = date.data
@@ -104,6 +129,21 @@ async function openCardModal(cardId){
     modalDescription.textContent = cardDetails.description;
 
 };
+
+// document.getElementById("btn-search").addEventListener("click", ()=>{
+//     const searchvalue = searchInput.value.trim().toLowerCase();
+//     console.log(searchvalue);
+//     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchvalue}`)
+//     .then(res => res.json())
+//     .then((data) => {
+//         const allCard = data.data
+//         console.log(allCard);
+//         const filterCard = allCard.filter(maincard => maincard.mainCard.toLowerCase().includes(searchvalue))
+//         console.log(filterCard);
+//     });
+//     // console.log(filterCard);
+// });
+
 
 
 // totalCalculate()
