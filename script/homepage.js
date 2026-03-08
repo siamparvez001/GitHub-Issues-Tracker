@@ -21,15 +21,12 @@ let closedCard = [];
 const searchInput = document.getElementById("search-input");
 const loadingSpinner = document.getElementById("loading-spinner");
 // console.log(totalCard);
-
-
 async function searchIssues(searchText){
     const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
     const data = await res.json();
     displayCard(data.data);
 
 };
-
 searchInput.addEventListener("input", function(){
     const searchText = searchInput.value;
     if(searchText === ""){
@@ -39,28 +36,33 @@ searchInput.addEventListener("input", function(){
     searchIssues(searchText);
 
 });
-
-
-
-
 function totalCalculate(){
    totalCard.innerText = cardContainer.children.length;
 
     // console.log(totalNumber);
 };
-
 function allBtnClick(){
     displayCard(allCards);
+    openFilterBtn.classList.remove("btn-primary");
+    closedFilterBtn.classList.remove("btn-primary");
+    allFilterBtn.classList.add("btn-primary");
 };
-
 function openBtnClick(){
     const openCard = allCards.filter(card => card.status == 'open');
     displayCard(openCard);
+    allFilterBtn.classList.remove("btn-primary");
+    openFilterBtn.classList.add("btn-primary");
+    closedFilterBtn.classList.remove("btn-primary");
+
 };
 
 function closedBtnClick(){
     const closedCards = allCards.filter(card => card.status === "closed");
     displayCard(closedCards);
+    allFilterBtn.classList.remove("btn-primary");
+    openFilterBtn.classList.remove("btn-primary");
+    closedFilterBtn.classList.add("btn-primary");
+
 }
 
 async function loadCard() {
